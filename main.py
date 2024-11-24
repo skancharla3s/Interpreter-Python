@@ -5,14 +5,14 @@ from parser import Parser
 from interpreter import Interpreter
 
 def main():
-    print("Enter your code below (use ';' to separate statements, and type 'exit' to quit):")
+    print("Enter your code below (use ';' to separate statements, and type 'Done' after entering your code):")
     code = ""
     while True:
         try:
             line = input(">>> ")
         except EOFError:
             break  # Handle end-of-file (Ctrl+D)
-        if line.strip() == "exit":
+        if line.strip() == "Done":
             break
         code += line + " "  # Accumulate the input code
 
