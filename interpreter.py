@@ -4,8 +4,8 @@ class Interpreter:
     def __init__(self):
         self.variables = {}
 
+    #Visits each node and dispatches to the appropriate method.
     def visit(self, node):
-        """Visits each node and dispatches to the appropriate method."""
         if isinstance(node, list):
             for stmt in node:
                 self.visit(stmt)
@@ -20,24 +20,24 @@ class Interpreter:
         elif isinstance(node, NumberNode):
             return self.visit_NumberNode(node)
         elif isinstance(node, StringNode):
-            return self.visit_StringNode(node)  # Handle string literals
+            return self.visit_StringNode(node)
         else:
             raise Exception(f"No visit method for node type {type(node).__name__}")
-
+        
+    #Handling variable assignment.
     def visit_AssignNode(self, node):
-        """Handles variable assignment."""
         value = self.visit(node.expr)
         self.variables[node.var_name] = value
         return value
-
+    
+    #Handling print statement.
     def visit_PrintNode(self, node):
-        """Handles print statement."""
         value = self.visit(node.expr)
         print(value)
         return value
-
+    
+    #Handling binary operations.
     def visit_BinOpNode(self, node):
-        """Handles binary operations."""
         left = self.visit(node.left)
         right = self.visit(node.right)
         if node.op == '+':
@@ -64,11 +64,11 @@ class Interpreter:
            raise Exception(f"Undefined variable: {node.var_name}")
         return self.variables[node.var_name]
 
-
+    
+    #Handling number nodes.
     def visit_NumberNode(self, node):
-        """Handles number nodes."""
         return node.value
-
+    
+    #Handling string literals.
     def visit_StringNode(self, node):
-        """Handles string literals."""
-        return node.value  # Simply returns the string value
+        return node.value

@@ -1,3 +1,4 @@
+# This node represents an assignment operation, linking a variable to an expression or value.
 class AssignNode:
     def __init__(self, var_name, expr):
         self.var_name = var_name
@@ -6,20 +7,21 @@ class AssignNode:
     def __repr__(self):
         return f"AssignNode(var={self.var_name}, expr={repr(self.expr)})"
 
-
+# This node represents a binary operation (e.g., addition, subtraction) with two operands and an operator.
 class BinOpNode:
     def __init__(self, left, op, right):
         self.left = left
         self.op = op
         self.right = right
 
+    # Map symbols to readable names
     def __repr__(self):
         op_name = {
             '+': 'PLUS',
             '-': 'MINUS',
             '*': 'MUL',
             '/': 'DIV'
-        }.get(self.op, self.op)  # Map symbols to readable names
+        }.get(self.op, self.op)  
         return f"BinOpNode(left={repr(self.left)}, op={op_name}, right={repr(self.right)})"
 
 
@@ -44,7 +46,7 @@ class NumberNode:
         self.value = value
 
     def __repr__(self):
-        return f"{self.value}"  # Return the raw number value
+        return f"{self.value}"
 
 
 class StringNode:
@@ -52,4 +54,4 @@ class StringNode:
         self.value = value
 
     def __repr__(self):
-        return repr(self.value)  # Return the raw string value
+        return repr(self.value)
