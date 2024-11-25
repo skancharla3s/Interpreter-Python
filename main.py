@@ -20,7 +20,7 @@ def main():
 
     # Check if the code ends with a semicolon
     if not code.strip().endswith(';'):
-        print("Syntax Error: Code must end with a semicolon (';').")
+        print("Syntax Error: Each line in the code must end with a semicolon (';').")
         return
 
     try:
